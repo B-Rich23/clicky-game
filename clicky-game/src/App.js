@@ -24,16 +24,15 @@ class App extends Component {
     });
     this.setState({ score: 0 });
     return true;
-  }
+  };
 
   clickCount = id => {
     this.state.marvel.find((obj, i) => {
-
+      
       if (obj.id === id) {
         if (marvel[i].count === 0) {
           marvel[i].count = marvel[i].count + 1;
-          this.setState({ score: this.state.score + 1 }
-          )};
+          this.setState({ score: this.state.score + 1 });
           this.state.marvel.sort(() => Math.random() - 0.5)
           return true;
         } else {
@@ -54,12 +53,11 @@ class App extends Component {
             key={marvel.id}
             name={marvel.name}
             image={marvel.image}
-            selected={marvel.selected}
+            clickCount={this.clickCount}
           />
         ))}
       </Wrapper>
     );
   }
 }
-
 export default App;
