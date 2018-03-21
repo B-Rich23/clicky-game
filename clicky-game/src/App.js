@@ -1,37 +1,37 @@
 import React, { Component } from "react";
-import FriendCard from "./components/FriendCard";
-// import Wrapper from "./components/Wrapper";
-// import Title from "./components/Title";
-import friends from "./friends.json";
+import MarvelCard from "./components/MarvelCard";
+import Wrapper from "./components/Wrapper";
+import Header from "./components/Header";
+import marvel from "./marvel.json";
 import "./App.css";
 
 class App extends Component {
-  // Setting this.state.friends to the friends json array
+  // Setting this.state.marvel to the marvel json array
   state = {
-    friends
+    marvel,
+    score: 0,
+    highscore: 0
   };
 
-  removeFriend = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    const friends = this.state.friends.filter(friend => friend.id !== id);
-    // Set this.state.friends equal to the new friends array
-    this.setState({ friends });
+  selectCard= id => {
+    // Filter this.state.marvel for marvel with an id not equal to the id being removed
+    const marvel = this.state.marvel.filter(marvel => marvel.id !== id);
+    // Set this.state.marvel equal to the new marvel array
+    this.setState({ marvel });
   };
 
-  // Map over this.state.friends and render a FriendCard component for each friend object
+  // Map over this.state.marvel and render a MarvelCard component for each marvel object
   render() {
     return (
       <Wrapper>
-        <Title>Friends List</Title>
-        {this.state.friends.map(friend => (
-          <FriendCard
-            removeFriend={this.removeFriend}
-            id={friend.id}
-            key={friend.id}
-            name={friend.name}
-            image={friend.image}
-            occupation={friend.occupation}
-            location={friend.location}
+        <Header>Marvel List</Header>
+        {this.state.marvel.map(marvel => (
+          <MarvelCard
+            id={marvel.id}
+            key={marvel.id}
+            name={marvel.name}
+            image={marvel.image}
+            selected={marvel.selected}
           />
         ))}
       </Wrapper>
