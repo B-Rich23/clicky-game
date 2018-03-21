@@ -13,18 +13,41 @@ class App extends Component {
     highscore: 0
   };
 
-  selectCard= id => {
-    // Filter this.state.marvel for marvel with an id not equal to the id being removed
-    const marvel = this.state.marvel.filter(marvel => marvel.id !== id);
-    // Set this.state.marvel equal to the new marvel array
-    this.setState({ marvel });
-  };
+  gameOver = () => {
+    if (this.state.score > this.state.highscore) {
+      this.setState({ highscore: this.state.score }, function () {
+        console.log(this.state.highscore);
+      });
+    }
+    this.state.marvel.forEach(card => {
+      marvel.count = 0;
+    });
+    this.setState({ score: 0 });
+    return true;
+  }
 
+  clickCount = id => {
+    this.state.marvel.find((obj, i) => {
+
+      if (obj.id === id) {
+        if (marvel[i].count === 0) {
+          marvel[i].count = marvel[i].count + 1;
+          this.setState({ score: this.state.score + 1 }
+          )};
+          this.state.marvel.sort(() => Math.random() - 0.5)
+          return true;
+        } else {
+          this.gameOver();
+        }
+      }
+    });
+  }
   // Map over this.state.marvel and render a MarvelCard component for each marvel object
   render() {
     return (
       <Wrapper>
-        <Header>Marvel List</Header>
+        <Header>Click an image to begin!
+        </Header>
         {this.state.marvel.map(marvel => (
           <MarvelCard
             id={marvel.id}
