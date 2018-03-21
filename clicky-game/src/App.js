@@ -19,7 +19,7 @@ class App extends Component {
         console.log(this.state.highscore);
       });
     }
-    this.state.marvel.forEach(card => {
+    this.state.marvel.forEach(marvel => {
       marvel.count = 0;
     });
     this.setState({ score: 0 });
@@ -45,7 +45,7 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Header>Click an image to begin!
+        <Header score={this.state.score} highscore={this.state.highscore}>Marvel Clicky
         </Header>
         {this.state.marvel.map(marvel => (
           <MarvelCard
